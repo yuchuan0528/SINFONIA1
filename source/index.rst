@@ -15,7 +15,7 @@
    :target: https://SINFONIA1.readthedocs.io
    
 
-Online single-cell data integration through projecting heterogeneous datasets into a common cell-embedding space
+123456
 ----------------
 
 .. include:: contributors.rst
