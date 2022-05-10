@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorial &mdash; SINFONIA  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Installation" href="../installation.html" />
+    <link rel="prev" title="123456" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> SINFONIA
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Label transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Integration scATAC-seq data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Integration cross-modality data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#spatial-data-to-be-updated">Spatial data (To be updated)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">Release</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SINFONIA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorial/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="永久链接至标题">¶</a></h1>
+<section id="id1">
+<h2><a class="reference external" href="../tutorial/Integration_PBMC.ipynb">Integration</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>before integration</p>
+<a class="reference internal image-reference" href="../_images/pbmc_before_integration.png"><img alt="../_images/pbmc_before_integration.png" src="../_images/pbmc_before_integration.png" style="width: 500px;" /></a>
+<p>after SCALEX integration</p>
+<a class="reference internal image-reference" href="../_images/pbmc_integration.png"><img alt="../_images/pbmc_integration.png" src="../_images/pbmc_integration.png" style="width: 600px;" /></a>
+</section>
+<section id="id2">
+<h2><a class="reference external" href="../tutorial/Projection_pancreas.ipynb">Projection</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>Map new data to the embeddings of reference</p>
+<p>A pancreas reference was created by integrating eight batches.</p>
+<p>Here, map pancreas_gse81547, pancreas_gse83139 and pancreas_gse114297 to the embeddings of pancreas reference.</p>
+<a class="reference internal image-reference" href="../_images/pancreas_projection.png"><img alt="../_images/pancreas_projection.png" src="../_images/pancreas_projection.png" style="width: 600px;" /></a>
+</section>
+<section id="id3">
+<h2><a class="reference external" href="https://scalex.readthedocs.io/en/latest/tutorial/Projection_pancreas.html#Label-transfer">Label transfer</a><a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>Annotate cells in new data through label transfer</p>
+<p>Label transfer tabula muris data and mouse kidney data from mouse atlas reference</p>
+<p>mouse atlas reference</p>
+<a class="reference internal image-reference" href="../_images/mouse_atlas_reference.png"><img alt="../_images/mouse_atlas_reference.png" src="../_images/mouse_atlas_reference.png" style="width: 400px;" /></a>
+<p>query tabula muris aging and query mouse kidney</p>
+<a class="reference internal image-reference" href="../_images/query_tabula_muris_aging.png"><img alt="../_images/query_tabula_muris_aging.png" src="../_images/query_tabula_muris_aging.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/query_kidney.png"><img alt="../_images/query_kidney.png" src="../_images/query_kidney.png" style="width: 300px;" /></a>
+</section>
+<section id="id4">
+<h2><a class="reference external" href="Integration_scATAC-seq.ipynb">Integration scATAC-seq data</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/scATAC_integration.png"><img alt="../_images/scATAC_integration.png" src="../_images/scATAC_integration.png" style="width: 600px;" /></a>
+</section>
+<section id="id5">
+<h2><a class="reference external" href="../tutorial/Integration_cross-modality.ipynb">Integration cross-modality data</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>Integrate scRNA-seq and scATAC-seq dataset</p>
+<a class="reference internal image-reference" href="../_images/cross-modality_integration.png"><img alt="../_images/cross-modality_integration.png" src="../_images/cross-modality_integration.png" style="width: 600px;" /></a>
+</section>
+<section id="spatial-data-to-be-updated">
+<h2>Spatial data (To be updated)<a class="headerlink" href="#spatial-data-to-be-updated" title="永久链接至标题">¶</a></h2>
+<p>Integrating spatial data with scRNA-seq</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="永久链接至标题">¶</a></h2>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="123456" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, yuchuan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
