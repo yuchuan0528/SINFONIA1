@@ -1,7 +1,7 @@
 Tutorial
 =========
 
-`Integration <../tutorial/Integration_PBMC.ipynb>`_
+`Demo <../tutorial/demo.ipynb>`_
 --------------------
 
 before integration
@@ -75,7 +75,7 @@ Examples
     :maxdepth: 2
     :hidden:
     
-    Integration_PBMC
+    demo
     Projection_pancreas
     Integration_scATAC-seq
     Integration_cross-modality
