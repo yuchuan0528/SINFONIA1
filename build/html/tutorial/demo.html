@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>stPlus &mdash; SINFONIA  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Projection pancreas data using SCALEX" href="Projection_pancreas.html" />
+    <link rel="prev" title="Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/logo_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">Label transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">Integration scATAC-seq data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">Integration cross-modality data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#spatial-data-to-be-updated">Spatial data (To be updated)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#examples">Examples</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">stPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Getting-Started-stPlus-Application">Getting Started stPlus Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Reproduction-of-5-fold-cross-validation">Reproduction of 5-fold cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Projection_pancreas.html">Projection pancreas data using SCALEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Integration_scATAC-seq.html">Integrating scATAC-seq data using SCALEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Integration_cross-modality.html">Integration cross-modality data using SCALEX</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">Release</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SINFONIA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorial</a> &raquo;</li>
+      <li>stPlus</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/yuchuan0528/SINFONIA1/blob/main/SINFONIA/tutorial/demo.ipynb" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="stPlus">
+<h1>stPlus<a class="headerlink" href="#stPlus" title="永久链接至标题">¶</a></h1>
+<p>stPlus is a reference-based method for the enhancement of spatial transcriptomics. Leveraging the holistic information in reference scRNA-seq data but not limited to the genes shared with spatial data, stPlus performs non-linear embedding for cells in both datasets and effectively predicts unmeasured spatial gene expression.</p>
+<p>The <strong>required inputs</strong> of stPlus including</p>
+<ul class="simple">
+<li><p><strong>spatial_df</strong>: normalized and logarithmized original spatial data</p></li>
+<li><p><strong>scrna_df</strong>: normalized and logarithmized reference scRNA-seq data</p></li>
+<li><p><strong>genes_to_predict</strong>: spatial genes to be predicted</p></li>
+</ul>
+<p>The <strong>output</strong> of stPlus is</p>
+<ul class="simple">
+<li><p><strong>stPlus_res</strong>: predicted spatial transcriptomics data</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<p>Import the package of stPlus</p>
+<p>The frequently used packages such as pandas (pd), numpy (np) and torch will be automatically imported along with stPlus.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">stPlus</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<p>Check the fundamentals of stPlus via</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">stPlus</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Help on function stPlus in module stPlus.model:
+
+stPlus(spatial_df, scrna_df, genes_to_predict, save_path_prefix=&#39;./stPlus&#39;, top_k=2000, t_min=5, data_quality=None, random_seed=None, verbose=True, n_neighbors=50, converge_ratio=0.004, max_epoch_num=10000, batch_size=512, learning_rate=None, weight_decay=0.0002)
+    spatial_df:       [pandas dataframe] normalized and logarithmized original spatial data (cell by gene)
+    scrna_df:         [pandas dataframe] normalized and logarithmized reference scRNA-seq data (cell by gene)
+    genes_to_predict: [1D numpy array] spatial genes to be predicted
+    save_path_prefix: [str] prefix of path of trained t models with minimal loss
+    top_k:            [int] number of highly variable genes to use
+    t_min:            [int] number of epochs with minimal loss using to ensemble learning
+    data_quality:     [float] user-specified or 1 minus the sparsity of scRNA-seq data (default)
+    random_seed:      [int] random seed in torch
+    verbose:          [bool] display the running progress or not
+    n_neighbors:      [int] number of neighbors used to predict
+    converge_ratio:   [float] loss converge ratio
+    max_epoch_num:    [int] maximum number of epochs
+    batch_size:       [int] batch size for model training
+    learning_rate:    [float] learning rate for model training
+    weight_decay:     [float] weight decay for model training
+    stPlus_res:       [pandas dataframe] predicted spatial data (cell by gene)
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Getting-Started-stPlus-Application">
+<h1>Getting Started stPlus Application<a class="headerlink" href="#Getting-Started-stPlus-Application" title="永久链接至标题">¶</a></h1>
+<p>Load the normalized and logarithmized spatial and scRNA-seq data, and the genes to predict</p>
+<p>The data can be accessed via</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone git://github.com/xy-chen16/stPlus.git
+cd stPlus
+tar -zxvf data.tar.gz
+</pre></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_df_file</span> <span class="o">=</span> <span class="s1">&#39;./data/osmFISH_df.csv&#39;</span>
+<span class="n">scrna_df_file</span>   <span class="o">=</span> <span class="s1">&#39;./data/Zeisel_df.csv&#39;</span>
+<span class="n">genes_file</span>      <span class="o">=</span> <span class="s1">&#39;./data/genes_to_predict.txt&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">spatial_df_file</span><span class="p">)</span>
+<span class="n">scrna_df</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">scrna_df_file</span><span class="p">)</span>
+<span class="n">genes_to_predict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">genes_file</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gad2</th>
+      <th>Slc32a1</th>
+      <th>Crhbp</th>
+      <th>Cnr1</th>
+      <th>Vip</th>
+      <th>Cpne5</th>
+      <th>Pthlh</th>
+      <th>Crh</th>
+      <th>Tbr1</th>
+      <th>Lamp5</th>
+      <th>...</th>
+      <th>Ctps</th>
+      <th>Anln</th>
+      <th>Mrc1</th>
+      <th>Hexb</th>
+      <th>Ttr</th>
+      <th>Foxj1</th>
+      <th>Vtn</th>
+      <th>Flt1</th>
+      <th>Apln</th>
+      <th>Acta2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.777385</td>
+      <td>2.926465</td>
+      <td>0.000000</td>
+      <td>1.390133</td>
+      <td>0.829559</td>
+      <td>2.119032</td>
+      <td>0.000000</td>
+      <td>0.621403</td>
+      <td>2.536136</td>
+      <td>1.492039</td>
+      <td>...</td>
+      <td>2.009762</td>
+      <td>1.276651</td>
+      <td>1.001762</td>
+      <td>2.065889</td>
+      <td>1.001762</td>
+      <td>0.829559</td>
+      <td>0.621403</td>
+      <td>0.000000</td>
+      <td>1.001762</td>
+      <td>0.829559</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3.699013</td>
+      <td>3.059924</td>
+      <td>1.123004</td>
+      <td>0.346999</td>
+      <td>0.604114</td>
+      <td>0.346999</td>
+      <td>0.346999</td>
+      <td>0.808458</td>
+      <td>1.462912</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>1.123004</td>
+      <td>0.808458</td>
+      <td>0.346999</td>
+      <td>0.808458</td>
+      <td>0.346999</td>
+      <td>0.346999</td>
+      <td>0.604114</td>
+      <td>0.000000</td>
+      <td>0.978048</td>
+      <td>0.346999</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3.663039</td>
+      <td>3.480582</td>
+      <td>2.220487</td>
+      <td>0.521361</td>
+      <td>0.862314</td>
+      <td>0.000000</td>
+      <td>1.222337</td>
+      <td>0.521361</td>
+      <td>2.143296</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.997242</td>
+      <td>0.862314</td>
+      <td>0.706299</td>
+      <td>2.256957</td>
+      <td>0.294279</td>
+      <td>0.862314</td>
+      <td>0.997242</td>
+      <td>0.000000</td>
+      <td>0.521361</td>
+      <td>0.706299</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3.428742</td>
+      <td>2.682501</td>
+      <td>0.831733</td>
+      <td>1.279431</td>
+      <td>0.499956</td>
+      <td>0.000000</td>
+      <td>1.184873</td>
+      <td>0.000000</td>
+      <td>3.079924</td>
+      <td>0.963793</td>
+      <td>...</td>
+      <td>1.279431</td>
+      <td>0.000000</td>
+      <td>0.963793</td>
+      <td>1.587579</td>
+      <td>0.963793</td>
+      <td>0.280902</td>
+      <td>0.280902</td>
+      <td>0.000000</td>
+      <td>0.280902</td>
+      <td>0.963793</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.433613</td>
+      <td>3.250374</td>
+      <td>0.000000</td>
+      <td>2.282382</td>
+      <td>0.955511</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.223775</td>
+      <td>4.506454</td>
+      <td>...</td>
+      <td>1.435085</td>
+      <td>0.587787</td>
+      <td>0.955511</td>
+      <td>1.223775</td>
+      <td>0.587787</td>
+      <td>0.587787</td>
+      <td>0.587787</td>
+      <td>0.587787</td>
+      <td>1.223775</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 33 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scrna_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tspan12</th>
+      <th>Tshz1</th>
+      <th>Fnbp1l</th>
+      <th>Adamts15</th>
+      <th>Cldn12</th>
+      <th>Rxfp1</th>
+      <th>2310042E22Rik</th>
+      <th>Sema3c</th>
+      <th>Jam2</th>
+      <th>Apbb1ip</th>
+      <th>...</th>
+      <th>Rab9</th>
+      <th>Tceanc</th>
+      <th>Msl3</th>
+      <th>Arhgap6</th>
+      <th>Mid1</th>
+      <th>Vamp7</th>
+      <th>Tmlhe</th>
+      <th>Zf12</th>
+      <th>Kdm5d</th>
+      <th>Uty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.000000</td>
+      <td>4.942366</td>
+      <td>4.942366</td>
+      <td>0.0</td>
+      <td>3.857929</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>6.236445</td>
+      <td>3.857929</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>5.785577</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.450333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.000000</td>
+      <td>3.850649</td>
+      <td>3.850649</td>
+      <td>0.0</td>
+      <td>3.850649</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>3.850649</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>5.251013</td>
+      <td>0.0</td>
+      <td>3.485126</td>
+      <td>0.0</td>
+      <td>4.162830</td>
+      <td>6.674137</td>
+      <td>3.485126</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>3.485126</td>
+      <td>0.0</td>
+      <td>4.162830</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.563094</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>5.404414</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.523832</td>
+      <td>4.123776</td>
+      <td>4.808798</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>4.523832</td>
+      <td>3.446682</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>4.523832</td>
+      <td>0.0</td>
+      <td>3.446682</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.000000</td>
+      <td>4.542944</td>
+      <td>3.860383</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>6.143832</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>5.230756</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>4.944856</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 15075 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">genes_to_predict</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([&#39;Tesc&#39;, &#39;Pvrl3&#39;, &#39;Grm2&#39;], dtype=object)
+</pre></div></div>
+</div>
+<p>Run stPlus</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">save_path_prefix</span> <span class="o">=</span> <span class="s1">&#39;./model/stPlus-demo&#39;</span>
+<span class="n">stPlus_res</span> <span class="o">=</span> <span class="n">stPlus</span><span class="p">(</span><span class="n">spatial_df</span><span class="p">,</span> <span class="n">scrna_df</span><span class="p">,</span> <span class="n">genes_to_predict</span><span class="p">,</span> <span class="n">save_path_prefix</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Models will be saved in: ./model/stPlus-demo-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 33 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+3 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 17203.548, pred_loss: 90388.025, total_loss: 107591.573
+        [2] recon_loss: 10213.595, pred_loss: 54336.520, total_loss: 64550.114
+        [3] recon_loss: 8357.641, pred_loss: 49231.158, total_loss: 57588.799
+        [4] recon_loss: 7236.344, pred_loss: 46241.893, total_loss: 53478.237
+        [5] recon_loss: 6078.648, pred_loss: 44857.473, total_loss: 50936.121
+        [6] recon_loss: 5135.076, pred_loss: 43864.600, total_loss: 48999.676
+        [7] recon_loss: 4502.876, pred_loss: 43209.645, total_loss: 47712.521
+        [8] recon_loss: 4111.535, pred_loss: 42792.704, total_loss: 46904.238
+        [9] recon_loss: 3823.475, pred_loss: 42349.922, total_loss: 46173.397
+        [10] recon_loss: 3590.203, pred_loss: 41935.582, total_loss: 45525.785
+        [11] recon_loss: 3453.445, pred_loss: 41591.686, total_loss: 45045.131
+        [12] recon_loss: 3374.901, pred_loss: 41314.583, total_loss: 44689.483
+        [13] recon_loss: 3317.524, pred_loss: 41037.848, total_loss: 44355.371
+        [14] recon_loss: 3287.271, pred_loss: 40803.825, total_loss: 44091.096
+        [15] recon_loss: 3276.855, pred_loss: 40528.455, total_loss: 43805.310
+        [16] recon_loss: 3254.484, pred_loss: 40275.433, total_loss: 43529.917
+        [17] recon_loss: 3244.523, pred_loss: 40063.094, total_loss: 43307.617
+        [18] recon_loss: 3234.904, pred_loss: 39843.612, total_loss: 43078.517
+        [19] recon_loss: 3257.685, pred_loss: 39587.000, total_loss: 42844.684
+        [20] recon_loss: 3241.679, pred_loss: 39323.933, total_loss: 42565.611
+        [21] recon_loss: 3234.252, pred_loss: 39135.255, total_loss: 42369.508
+        [22] recon_loss: 3223.576, pred_loss: 38870.880, total_loss: 42094.456
+        [23] recon_loss: 3220.039, pred_loss: 38677.736, total_loss: 41897.775
+        [24] recon_loss: 3224.211, pred_loss: 38449.658, total_loss: 41673.869
+        [25] recon_loss: 3225.118, pred_loss: 38257.383, total_loss: 41482.501
+        [26] recon_loss: 3220.878, pred_loss: 38035.258, total_loss: 41256.136
+        [27] recon_loss: 3219.822, pred_loss: 37814.650, total_loss: 41034.472
+        [28] recon_loss: 3218.807, pred_loss: 37568.328, total_loss: 40787.136
+        [29] recon_loss: 3224.159, pred_loss: 37301.243, total_loss: 40525.402
+        [30] recon_loss: 3220.634, pred_loss: 37097.109, total_loss: 40317.742
+        [31] recon_loss: 3222.785, pred_loss: 36882.865, total_loss: 40105.651
+        [32] recon_loss: 3232.968, pred_loss: 36697.815, total_loss: 39930.784
+        [33] recon_loss: 3230.321, pred_loss: 36480.995, total_loss: 39711.316
+        [34] recon_loss: 3243.827, pred_loss: 36257.982, total_loss: 39501.809
+        [35] recon_loss: 3226.956, pred_loss: 36033.323, total_loss: 39260.279
+        [36] recon_loss: 3246.395, pred_loss: 35871.184, total_loss: 39117.579
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+</pre></div></div>
+</div>
+<p>Obtain the following predicted spatial transcriptomics data</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">stPlus_res</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tesc</th>
+      <th>Pvrl3</th>
+      <th>Grm2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.314772</td>
+      <td>1.774769</td>
+      <td>1.164707</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.695193</td>
+      <td>2.171672</td>
+      <td>0.468714</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.544767</td>
+      <td>2.187255</td>
+      <td>0.377925</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.925574</td>
+      <td>2.159383</td>
+      <td>0.873194</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.091284</td>
+      <td>2.185003</td>
+      <td>0.089993</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Reproduction-of-5-fold-cross-validation">
+<h1>Reproduction of 5-fold cross-validation<a class="headerlink" href="#Reproduction-of-5-fold-cross-validation" title="永久链接至标题">¶</a></h1>
+<p>Load data</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spatial_df_file</span> <span class="o">=</span> <span class="s1">&#39;./data/osmFISH_df.csv&#39;</span>
+<span class="n">scrna_df_file</span>   <span class="o">=</span> <span class="s1">&#39;./data/Zeisel_df.csv&#39;</span>
+<span class="n">raw_spatial_df</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">spatial_df_file</span><span class="p">)</span>
+<span class="n">raw_scrna_df</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">scrna_df_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_spatial_df</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">raw_scrna_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># cell by gene</span>
+<span class="n">raw_shared_gene</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">raw_spatial_df</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">raw_scrna_df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_shared_gene</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(3405, 33) (1691, 15075)
+(33,)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">kf</span><span class="o">.</span><span class="n">get_n_splits</span><span class="p">(</span><span class="n">raw_shared_gene</span><span class="p">)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">train_ind</span><span class="p">,</span> <span class="n">test_ind</span> <span class="ow">in</span> <span class="n">kf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">raw_shared_gene</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== Fold </span><span class="si">%d</span><span class="s2"> =====</span><span class="se">\n</span><span class="s2">Number of train genes: </span><span class="si">%d</span><span class="s2">, Number of test genes: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_ind</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_ind</span><span class="p">)))</span>
+    <span class="n">train_gene</span> <span class="o">=</span> <span class="n">raw_shared_gene</span><span class="p">[</span><span class="n">train_ind</span><span class="p">]</span>
+    <span class="n">test_gene</span>  <span class="o">=</span> <span class="n">raw_shared_gene</span><span class="p">[</span><span class="n">test_ind</span><span class="p">]</span>
+    <span class="n">test_spatial_df</span> <span class="o">=</span> <span class="n">raw_spatial_df</span><span class="p">[</span><span class="n">test_gene</span><span class="p">]</span>
+    <span class="n">spatial_df</span> <span class="o">=</span> <span class="n">raw_spatial_df</span><span class="p">[</span><span class="n">train_gene</span><span class="p">]</span>
+    <span class="n">scrna_df</span>   <span class="o">=</span> <span class="n">raw_scrna_df</span>
+
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">all_pred_res</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">spatial_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">raw_shared_gene</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">columns</span><span class="o">=</span><span class="n">raw_shared_gene</span><span class="p">)</span>
+    <span class="n">save_path_prefix</span> <span class="o">=</span> <span class="s1">&#39;./model/stPlus-demo-fold</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+    <span class="n">stPlus_res</span> <span class="o">=</span> <span class="n">stPlus</span><span class="p">(</span><span class="n">spatial_df</span><span class="p">,</span> <span class="n">scrna_df</span><span class="p">,</span> <span class="n">test_gene</span><span class="p">,</span> <span class="n">save_path_prefix</span><span class="p">)</span>
+    <span class="n">all_pred_res</span><span class="p">[</span><span class="n">stPlus_res</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">]</span> <span class="o">=</span> <span class="n">stPlus_res</span>
+    <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+===== Fold 1 =====
+Number of train genes: 26, Number of test genes: 7
+Models will be saved in: ./model/stPlus-demo-fold1-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 26 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+7 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 11739.449, pred_loss: 74647.239, total_loss: 86386.688
+        [2] recon_loss: 7977.249, pred_loss: 45591.339, total_loss: 53568.588
+        [3] recon_loss: 6315.242, pred_loss: 40697.307, total_loss: 47012.549
+        [4] recon_loss: 5338.903, pred_loss: 38085.516, total_loss: 43424.420
+        [5] recon_loss: 4521.835, pred_loss: 36605.408, total_loss: 41127.243
+        [6] recon_loss: 3885.873, pred_loss: 35562.838, total_loss: 39448.712
+        [7] recon_loss: 3434.955, pred_loss: 34985.452, total_loss: 38420.407
+        [8] recon_loss: 3090.548, pred_loss: 34581.929, total_loss: 37672.477
+        [9] recon_loss: 2873.076, pred_loss: 34217.339, total_loss: 37090.415
+        [10] recon_loss: 2734.121, pred_loss: 33895.281, total_loss: 36629.403
+        [11] recon_loss: 2654.574, pred_loss: 33524.447, total_loss: 36179.021
+        [12] recon_loss: 2622.877, pred_loss: 33274.877, total_loss: 35897.754
+        [13] recon_loss: 2601.353, pred_loss: 33054.496, total_loss: 35655.850
+        [14] recon_loss: 2585.795, pred_loss: 32888.497, total_loss: 35474.291
+        [15] recon_loss: 2586.679, pred_loss: 32700.149, total_loss: 35286.830
+        [16] recon_loss: 2588.459, pred_loss: 32518.901, total_loss: 35107.360
+        [17] recon_loss: 2577.011, pred_loss: 32368.643, total_loss: 34945.654
+        [18] recon_loss: 2570.933, pred_loss: 32201.130, total_loss: 34772.063
+        [19] recon_loss: 2583.978, pred_loss: 32025.613, total_loss: 34609.590
+        [20] recon_loss: 2573.693, pred_loss: 31833.046, total_loss: 34406.740
+        [21] recon_loss: 2565.969, pred_loss: 31703.635, total_loss: 34269.604
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+
+===== Fold 2 =====
+Number of train genes: 26, Number of test genes: 7
+Models will be saved in: ./model/stPlus-demo-fold2-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 26 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+7 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 12657.711, pred_loss: 72791.593, total_loss: 85449.304
+        [2] recon_loss: 7866.185, pred_loss: 44299.994, total_loss: 52166.179
+        [3] recon_loss: 6028.242, pred_loss: 39719.498, total_loss: 45747.741
+        [4] recon_loss: 4873.198, pred_loss: 37702.352, total_loss: 42575.549
+        [5] recon_loss: 3820.719, pred_loss: 36517.340, total_loss: 40338.060
+        [6] recon_loss: 3142.660, pred_loss: 35792.376, total_loss: 38935.036
+        [7] recon_loss: 2591.975, pred_loss: 35285.075, total_loss: 37877.050
+        [8] recon_loss: 2236.951, pred_loss: 34895.579, total_loss: 37132.531
+        [9] recon_loss: 1763.605, pred_loss: 34620.893, total_loss: 36384.498
+        [10] recon_loss: 1414.014, pred_loss: 34380.580, total_loss: 35794.594
+        [11] recon_loss: 1308.097, pred_loss: 34139.903, total_loss: 35448.001
+        [12] recon_loss: 1211.862, pred_loss: 33883.886, total_loss: 35095.747
+        [13] recon_loss: 1158.549, pred_loss: 33717.008, total_loss: 34875.557
+        [14] recon_loss: 1131.330, pred_loss: 33536.603, total_loss: 34667.933
+        [15] recon_loss: 1104.900, pred_loss: 33367.221, total_loss: 34472.121
+        [16] recon_loss: 1094.709, pred_loss: 33222.699, total_loss: 34317.408
+        [17] recon_loss: 1084.159, pred_loss: 33049.196, total_loss: 34133.354
+        [18] recon_loss: 1086.589, pred_loss: 32945.729, total_loss: 34032.318
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+
+===== Fold 3 =====
+Number of train genes: 26, Number of test genes: 7
+Models will be saved in: ./model/stPlus-demo-fold3-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 26 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+7 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 12390.300, pred_loss: 72342.343, total_loss: 84732.644
+        [2] recon_loss: 8188.802, pred_loss: 44942.304, total_loss: 53131.106
+        [3] recon_loss: 6291.949, pred_loss: 40377.416, total_loss: 46669.365
+        [4] recon_loss: 5169.492, pred_loss: 38220.132, total_loss: 43389.625
+        [5] recon_loss: 4417.117, pred_loss: 36790.270, total_loss: 41207.387
+        [6] recon_loss: 3828.236, pred_loss: 35789.447, total_loss: 39617.683
+        [7] recon_loss: 3408.590, pred_loss: 35147.304, total_loss: 38555.894
+        [8] recon_loss: 3131.592, pred_loss: 34748.088, total_loss: 37879.680
+        [9] recon_loss: 2956.274, pred_loss: 34420.318, total_loss: 37376.592
+        [10] recon_loss: 2861.188, pred_loss: 34120.650, total_loss: 36981.837
+        [11] recon_loss: 2804.042, pred_loss: 33846.566, total_loss: 36650.609
+        [12] recon_loss: 2771.452, pred_loss: 33637.186, total_loss: 36408.639
+        [13] recon_loss: 2762.259, pred_loss: 33450.211, total_loss: 36212.469
+        [14] recon_loss: 2789.141, pred_loss: 33273.199, total_loss: 36062.339
+        [15] recon_loss: 2726.271, pred_loss: 33034.970, total_loss: 35761.242
+        [16] recon_loss: 2620.059, pred_loss: 32869.676, total_loss: 35489.735
+        [17] recon_loss: 2573.334, pred_loss: 32747.131, total_loss: 35320.465
+        [18] recon_loss: 2549.012, pred_loss: 32510.921, total_loss: 35059.932
+        [19] recon_loss: 2525.562, pred_loss: 32344.204, total_loss: 34869.766
+        [20] recon_loss: 2509.090, pred_loss: 32188.711, total_loss: 34697.800
+        [21] recon_loss: 2500.812, pred_loss: 32067.995, total_loss: 34568.808
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+
+===== Fold 4 =====
+Number of train genes: 27, Number of test genes: 6
+Models will be saved in: ./model/stPlus-demo-fold4-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 27 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+6 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 12853.981, pred_loss: 76292.980, total_loss: 89146.959
+        [2] recon_loss: 8066.390, pred_loss: 46920.068, total_loss: 54986.459
+        [3] recon_loss: 6111.782, pred_loss: 41340.893, total_loss: 47452.675
+        [4] recon_loss: 4921.521, pred_loss: 38585.130, total_loss: 43506.651
+        [5] recon_loss: 3965.840, pred_loss: 37329.005, total_loss: 41294.846
+        [6] recon_loss: 2918.404, pred_loss: 36594.033, total_loss: 39512.437
+        [7] recon_loss: 2192.198, pred_loss: 36087.175, total_loss: 38279.373
+        [8] recon_loss: 1796.509, pred_loss: 35672.266, total_loss: 37468.775
+        [9] recon_loss: 1590.475, pred_loss: 35405.757, total_loss: 36996.232
+        [10] recon_loss: 1471.140, pred_loss: 35062.921, total_loss: 36534.061
+        [11] recon_loss: 1422.799, pred_loss: 34862.397, total_loss: 36285.196
+        [12] recon_loss: 1406.874, pred_loss: 34604.391, total_loss: 36011.264
+        [13] recon_loss: 1404.298, pred_loss: 34375.869, total_loss: 35780.167
+        [14] recon_loss: 1377.153, pred_loss: 34184.811, total_loss: 35561.964
+        [15] recon_loss: 1379.733, pred_loss: 34028.270, total_loss: 35408.004
+        [16] recon_loss: 1374.864, pred_loss: 33812.131, total_loss: 35186.995
+        [17] recon_loss: 1366.244, pred_loss: 33660.751, total_loss: 35026.996
+        [18] recon_loss: 1366.140, pred_loss: 33472.101, total_loss: 34838.240
+        [19] recon_loss: 1362.694, pred_loss: 33290.717, total_loss: 34653.411
+        [20] recon_loss: 1375.958, pred_loss: 33077.495, total_loss: 34453.453
+        [21] recon_loss: 1371.388, pred_loss: 32947.807, total_loss: 34319.194
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+
+===== Fold 5 =====
+Number of train genes: 27, Number of test genes: 6
+Models will be saved in: ./model/stPlus-demo-fold5-5min*.pt
+
+Spatial transcriptomics data: 3405 cells * 27 genes
+Reference scRNA-seq data:     1691 cells * 15075 genes
+6 genes to be predicted
+
+Start initialization
+Start embedding
+        [1] recon_loss: 12819.710, pred_loss: 75491.336, total_loss: 88311.046
+        [2] recon_loss: 7951.419, pred_loss: 45904.254, total_loss: 53855.673
+        [3] recon_loss: 5924.818, pred_loss: 41283.116, total_loss: 47207.934
+        [4] recon_loss: 4825.185, pred_loss: 38862.834, total_loss: 43688.018
+        [5] recon_loss: 3889.859, pred_loss: 37602.153, total_loss: 41492.012
+        [6] recon_loss: 3144.046, pred_loss: 36754.673, total_loss: 39898.719
+        [7] recon_loss: 2642.884, pred_loss: 36131.823, total_loss: 38774.706
+        [8] recon_loss: 2291.286, pred_loss: 35632.580, total_loss: 37923.866
+        [9] recon_loss: 2064.744, pred_loss: 35276.954, total_loss: 37341.699
+        [10] recon_loss: 1926.914, pred_loss: 35039.834, total_loss: 36966.749
+        [11] recon_loss: 1858.452, pred_loss: 34791.571, total_loss: 36650.023
+        [12] recon_loss: 1827.175, pred_loss: 34564.738, total_loss: 36391.914
+        [13] recon_loss: 1769.312, pred_loss: 34372.338, total_loss: 36141.650
+        [14] recon_loss: 1712.696, pred_loss: 34178.038, total_loss: 35890.734
+        [15] recon_loss: 1664.979, pred_loss: 34033.348, total_loss: 35698.326
+        [16] recon_loss: 1641.416, pred_loss: 33875.078, total_loss: 35516.495
+        [17] recon_loss: 1632.032, pred_loss: 33717.411, total_loss: 35349.443
+        [18] recon_loss: 1637.649, pred_loss: 33601.531, total_loss: 35239.181
+Start prediction
+        Using model 1 to predict
+        Using model 2 to predict
+        Using model 3 to predict
+        Using model 4 to predict
+        Using model 5 to predict
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corr_res</span> <span class="o">=</span> <span class="n">calc_corr</span><span class="p">(</span><span class="n">raw_spatial_df</span><span class="p">,</span> <span class="n">all_pred_res</span><span class="p">,</span> <span class="n">raw_shared_gene</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">corr_res</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.2191236775005986
+</pre></div></div>
+</div>
+<p>Note that there might be a slight difference in the results using different GPUs, even with the same version of all Python packages.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Projection_pancreas.html" class="btn btn-neutral float-right" title="Projection pancreas data using SCALEX" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, yuchuan.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
