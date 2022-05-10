@@ -16,10 +16,11 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="Installation" href="../installation.html" />
+    <link rel="next" title="stPlus" href="demo.html" />
     <link rel="prev" title="123456" href="../index.html" /> 
 </head>
 
@@ -28,7 +29,8 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> SINFONIA
+            <a href="../index.html">
+            <img src="../_static/logo_white.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -40,13 +42,19 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">Projection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">Label transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">Integration scATAC-seq data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id5">Integration cross-modality data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#spatial-data-to-be-updated">Spatial data (To be updated)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="demo.html">stPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="demo.html#Getting-Started-stPlus-Application">Getting Started stPlus Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="demo.html#Reproduction-of-5-fold-cross-validation">Reproduction of 5-fold cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Projection_pancreas.html">Projection pancreas data using SCALEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Integration_scATAC-seq.html">Integrating scATAC-seq data using SCALEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Integration_cross-modality.html">Integration cross-modality data using SCALEX</a></li>
 </ul>
 </li>
 </ul>
@@ -74,7 +82,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Tutorial</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/tutorial/index.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/yuchuan0528/SINFONIA1/blob/main/SINFONIA/tutorial/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -82,17 +90,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="tutorial">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="tutorial">
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="永久链接至标题">¶</a></h1>
 <section id="id1">
-<h2><a class="reference external" href="../tutorial/Integration_PBMC.ipynb">Integration</a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<h2><a class="reference internal" href="demo.html"><span class="doc">Demo</span></a><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>before integration</p>
 <a class="reference internal image-reference" href="../_images/pbmc_before_integration.png"><img alt="../_images/pbmc_before_integration.png" src="../_images/pbmc_before_integration.png" style="width: 500px;" /></a>
 <p>after SCALEX integration</p>
 <a class="reference internal image-reference" href="../_images/pbmc_integration.png"><img alt="../_images/pbmc_integration.png" src="../_images/pbmc_integration.png" style="width: 600px;" /></a>
 </section>
 <section id="id2">
-<h2><a class="reference external" href="../tutorial/Projection_pancreas.ipynb">Projection</a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2><a class="reference internal" href="Projection_pancreas.html"><span class="doc">Projection</span></a><a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>Map new data to the embeddings of reference</p>
 <p>A pancreas reference was created by integrating eight batches.</p>
 <p>Here, map pancreas_gse81547, pancreas_gse83139 and pancreas_gse114297 to the embeddings of pancreas reference.</p>
@@ -109,11 +141,11 @@
 <a class="reference internal image-reference" href="../_images/query_kidney.png"><img alt="../_images/query_kidney.png" src="../_images/query_kidney.png" style="width: 300px;" /></a>
 </section>
 <section id="id4">
-<h2><a class="reference external" href="Integration_scATAC-seq.ipynb">Integration scATAC-seq data</a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h2><a class="reference internal" href="Integration_scATAC-seq.html"><span class="doc">Integration scATAC-seq data</span></a><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <a class="reference internal image-reference" href="../_images/scATAC_integration.png"><img alt="../_images/scATAC_integration.png" src="../_images/scATAC_integration.png" style="width: 600px;" /></a>
 </section>
 <section id="id5">
-<h2><a class="reference external" href="../tutorial/Integration_cross-modality.ipynb">Integration cross-modality data</a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<h2><a class="reference internal" href="Integration_cross-modality.html"><span class="doc">Integration cross-modality data</span></a><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>Integrate scRNA-seq and scATAC-seq dataset</p>
 <a class="reference internal image-reference" href="../_images/cross-modality_integration.png"><img alt="../_images/cross-modality_integration.png" src="../_images/cross-modality_integration.png" style="width: 600px;" /></a>
 </section>
@@ -133,7 +165,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../index.html" class="btn btn-neutral float-left" title="123456" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="demo.html" class="btn btn-neutral float-right" title="stPlus" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -142,9 +174,6 @@
     <p>&#169; 版权所有 2022, yuchuan.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>
