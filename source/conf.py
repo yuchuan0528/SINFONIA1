@@ -37,7 +37,6 @@ extensions = [ 'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.autosummary',
-    'nbsphinx'
 ]
 
 # Generate the API documentation when building
