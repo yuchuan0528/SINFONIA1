@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integration cross-modality data using SCALEX &mdash; SINFONIA  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="Installation" href="../installation.html" />
+    <link rel="prev" title="Integrating scATAC-seq data using SCALEX" href="Integration_scATAC-seq.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/logo_white.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id3">Label transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id4">Integration scATAC-seq data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id5">Integration cross-modality data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#spatial-data-to-be-updated">Spatial data (To be updated)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#examples">Examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="demo.html">stPlus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="demo.html#Getting-Started-stPlus-Application">Getting Started stPlus Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="demo.html#Reproduction-of-5-fold-cross-validation">Reproduction of 5-fold cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Projection_pancreas.html">Projection pancreas data using SCALEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Integration_scATAC-seq.html">Integrating scATAC-seq data using SCALEX</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Integration cross-modality data using SCALEX</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Create-a-gene-activity-matrix-(R)">Create a gene activity matrix (R)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Integrate-(python)">Integrate (python)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release/index.html">Release</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SINFONIA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Tutorial</a> &raquo;</li>
+      <li>Integration cross-modality data using SCALEX</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/yuchuan0528/SINFONIA1/blob/main/SINFONIA/tutorial/Integration_cross-modality.ipynb" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Integration-cross-modality-data-using-SCALEX">
+<h1>Integration cross-modality data using SCALEX<a class="headerlink" href="#Integration-cross-modality-data-using-SCALEX" title="永久链接至标题">¶</a></h1>
+<p>The following tutorial demonstrates how to use SCALEX for <em>integrating</em> scRNA-seq and scATAC-seq data</p>
+<p>There are mainly two steps:</p>
+<ul class="simple">
+<li><p><strong>Create a gene activity matrix from scATAC-seq data.</strong> This step follows the standard workflow of Signac for scATAC-seq data analysis. We uses the function GeneActivity of Signac and calculate the activity of each gene in the genome by assessing the chromatin accessibility associated with each gene, and create a new gene activity matrix derived from the scATAC-seq data. More details are <a class="reference external" href="https://satijalab.org/signac/articles/pbmc_vignette.html">here</a>.</p></li>
+<li><p><strong>Integrate.</strong> We regard gene expression matrix and gene activity matrix as two batches of one dataset and use SCALEX for integration.</p></li>
+</ul>
+<p>For this tutorial, we used a cross-modality PBMC data between scRNA-seq and scATAC-seq provided by 10X Genomics, and both <a class="reference external" href="https://support.10xgenomics.com/single-cell-gene-expression/datasets/3.0.0/pbmc_10k_v3">scRNA-seq</a> and <a class="reference external" href="https://support.10xgenomics.com/single-cell-atac/datasets/1.0.1/atac_v1_pbmc_10k">scATAC-seq</a> data are available through the 10x Genomics website.</p>
+<section id="Create-a-gene-activity-matrix-(R)">
+<h2>Create a gene activity matrix (R)<a class="headerlink" href="#Create-a-gene-activity-matrix-(R)" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">Signac</span><span class="p">))</span>
+<span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">))</span>
+<span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">GenomeInfoDb</span><span class="p">))</span>
+<span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">EnsDb</span><span class="o">.</span><span class="n">Hsapiens</span><span class="o">.</span><span class="n">v75</span><span class="p">))</span>
+<span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">))</span>
+<span class="n">suppressPackageStartupMessages</span><span class="p">(</span><span class="n">library</span><span class="p">(</span><span class="n">patchwork</span><span class="p">))</span>
+<span class="nb">set</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="n">warn</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<section id="Pre-processing">
+<h3>Pre-processing<a class="headerlink" href="#Pre-processing" title="永久链接至标题">¶</a></h3>
+<p>We follow the pre-processing workflow of Signac when pre-processing chromatin data. First we creat a Seurat object by two related input files: cell matrix and fragment file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">&lt;-</span> <span class="n">Read10X_h5</span><span class="p">(</span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;atac_v1_pbmc_10k_filtered_peak_bc_matrix.h5&quot;</span><span class="p">)</span>
+<span class="n">metadata</span> <span class="o">&lt;-</span> <span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span>
+  <span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;atac_v1_pbmc_10k_singlecell.csv&quot;</span><span class="p">,</span>
+  <span class="n">header</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">,</span>
+  <span class="n">row</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">chrom_assay</span> <span class="o">&lt;-</span> <span class="n">CreateChromatinAssay</span><span class="p">(</span>
+  <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="p">,</span>
+  <span class="n">sep</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">),</span>
+  <span class="n">genome</span> <span class="o">=</span> <span class="s1">&#39;hg19&#39;</span><span class="p">,</span>
+  <span class="n">fragments</span> <span class="o">=</span> <span class="s1">&#39;atac_v1_pbmc_10k_fragments.tsv.gz&#39;</span><span class="p">,</span>
+  <span class="nb">min</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="nb">min</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="p">)</span>
+
+<span class="n">pbmc</span> <span class="o">&lt;-</span> <span class="n">CreateSeuratObject</span><span class="p">(</span>
+  <span class="n">counts</span> <span class="o">=</span> <span class="n">chrom_assay</span><span class="p">,</span>
+  <span class="n">assay</span> <span class="o">=</span> <span class="s2">&quot;peaks&quot;</span><span class="p">,</span>
+  <span class="n">meta</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">metadata</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Computing hash
+
+</pre></div></div>
+</div>
+<p>Now add gene annotations to the pbmc object for the human genome. genome is suggested to be as same as the genome for scRNA-seq reads mapping on.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># extract gene annotations from EnsDb</span>
+<span class="n">annotations</span> <span class="o">&lt;-</span> <span class="n">GetGRangesFromEnsDb</span><span class="p">(</span><span class="n">ensdb</span> <span class="o">=</span> <span class="n">EnsDb</span><span class="o">.</span><span class="n">Hsapiens</span><span class="o">.</span><span class="n">v75</span><span class="p">)</span>
+
+<span class="c1"># change to UCSC style since the data was mapped to hg19</span>
+<span class="n">seqlevelsStyle</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s1">&#39;UCSC&#39;</span>
+<span class="n">genome</span><span class="p">(</span><span class="n">annotations</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s2">&quot;hg19&quot;</span>
+
+<span class="c1"># add the gene information to the object</span>
+<span class="n">Annotation</span><span class="p">(</span><span class="n">pbmc</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">annotations</span>
+</pre></div>
+</div>
+</div>
+<p>Compute QC Metrics. If you don’t need to filter cells, ignore this step</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># compute nucleosome signal score per cell
+pbmc &lt;- NucleosomeSignal(object = pbmc)
+
+# compute TSS enrichment score per cell
+pbmc &lt;- TSSEnrichment(object = pbmc, fast = FALSE)
+
+# add blacklist ratio and fraction of reads in peaks
+pbmc$pct_reads_in_peaks &lt;- pbmc$peak_region_fragments / pbmc$passed_filters * 100
+pbmc$blacklist_ratio &lt;- pbmc$blacklist_region_fragments / pbmc$peak_region_fragments
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Extracting TSS positions
+
+Finding + strand cut sites
+
+Finding - strand cut sites
+
+Computing mean insertion frequency in flanking regions
+
+Normalizing TSS score
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pbmc$high.tss &lt;- ifelse(pbmc$TSS.enrichment &gt; 2, &#39;High&#39;, &#39;Low&#39;)
+TSSPlot(pbmc, group.by = &#39;high.tss&#39;) + NoLegend()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_Integration_cross-modality_11_0.png" class="no-scaled-link" src="../_images/tutorial_Integration_cross-modality_11_0.png" style="width: 420px; height: 420px;" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pbmc$nucleosome_group &lt;- ifelse(pbmc$nucleosome_signal &gt; 4, &#39;NS &gt; 4&#39;, &#39;NS &lt; 4&#39;)
+FragmentHistogram(object = pbmc, group.by = &#39;nucleosome_group&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_Integration_cross-modality_12_0.png" class="no-scaled-link" src="../_images/tutorial_Integration_cross-modality_12_0.png" style="width: 420px; height: 420px;" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VlnPlot</span><span class="p">(</span>
+  <span class="nb">object</span> <span class="o">=</span> <span class="n">pbmc</span><span class="p">,</span>
+  <span class="n">features</span> <span class="o">=</span> <span class="n">c</span><span class="p">(</span><span class="s1">&#39;pct_reads_in_peaks&#39;</span><span class="p">,</span> <span class="s1">&#39;peak_region_fragments&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;TSS.enrichment&#39;</span><span class="p">,</span> <span class="s1">&#39;blacklist_ratio&#39;</span><span class="p">,</span> <span class="s1">&#39;nucleosome_signal&#39;</span><span class="p">),</span>
+  <span class="n">pt</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+  <span class="n">ncol</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_Integration_cross-modality_13_0.png" class="no-scaled-link" src="../_images/tutorial_Integration_cross-modality_13_0.png" style="width: 420px; height: 420px;" />
+</div>
+</div>
+<p>Filter cells that are outliers for the QC metrics.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pbmc</span> <span class="o">&lt;-</span> <span class="n">subset</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">pbmc</span><span class="p">,</span>
+  <span class="n">subset</span> <span class="o">=</span> <span class="n">peak_region_fragments</span> <span class="o">&gt;</span> <span class="mi">3000</span> <span class="o">&amp;</span>
+    <span class="n">peak_region_fragments</span> <span class="o">&lt;</span> <span class="mi">20000</span> <span class="o">&amp;</span>
+    <span class="n">pct_reads_in_peaks</span> <span class="o">&gt;</span> <span class="mi">15</span> <span class="o">&amp;</span>
+    <span class="n">blacklist_ratio</span> <span class="o">&lt;</span> <span class="mf">0.05</span> <span class="o">&amp;</span>
+    <span class="n">nucleosome_signal</span> <span class="o">&lt;</span> <span class="mi">4</span> <span class="o">&amp;</span>
+    <span class="n">TSS</span><span class="o">.</span><span class="n">enrichment</span> <span class="o">&gt;</span> <span class="mi">2</span>
+<span class="p">)</span>
+<span class="n">pbmc</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+An object of class Seurat
+87561 features across 7060 samples within 1 assay
+Active assay: peaks (87561 features, 0 variable features)
+</pre></div></div>
+</div>
+</section>
+<section id="Calculate-gene-activity-matrix-by-GeneActivity()-function">
+<h3>Calculate gene activity matrix by GeneActivity() function<a class="headerlink" href="#Calculate-gene-activity-matrix-by-GeneActivity()-function" title="永久链接至标题">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene</span><span class="o">.</span><span class="n">activities</span> <span class="o">&lt;-</span> <span class="n">GeneActivity</span><span class="p">(</span><span class="n">pbmc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Extracting gene coordinates
+
+Extracting reads overlapping genomic regions
+
+</pre></div></div>
+</div>
+<p>save results</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk_dir</span> <span class="o">&lt;-</span> <span class="s1">&#39;./&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">gene</span><span class="o">.</span><span class="n">activities</span><span class="p">),</span> <span class="n">paste</span><span class="p">(</span><span class="n">wk_dir</span><span class="p">,</span><span class="s2">&quot;gene_activity_score.txt&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">quote</span> <span class="o">=</span> <span class="n">F</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="Integrate-(python)">
+<h2>Integrate (python)<a class="headerlink" href="#Integrate-(python)" title="永久链接至标题">¶</a></h2>
+<p>Now you can use the gene_activity_score together with the gene expression matrix for integration.</p>
+<p>You can run SCALE command line directly: SCALEX.py –data_list data1 data2 –batch_categories RNA ATAC -o output_path</p>
+<ul class="simple">
+<li><p><strong>data1:</strong> path or file of scRNA-seq data</p></li>
+<li><p><strong>data2:</strong> file of gene_activity_score</p></li>
+</ul>
+<p>and here we show the results before integration and after integration.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scalex</span>
+<span class="kn">from</span> <span class="nn">scalex</span> <span class="kn">import</span> <span class="n">SCALEX</span>
+<span class="kn">from</span> <span class="nn">scalex.plot</span> <span class="kn">import</span> <span class="n">embedding</span>
+<span class="kn">import</span> <span class="nn">scanpy</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">print_header</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+scanpy==1.7.0 anndata==0.7.5 umap==0.5.0 numpy==1.19.2 scipy==1.5.2 pandas==1.1.3 scikit-learn==0.23.2 statsmodels==0.12.0 python-igraph==0.9.0 leidenalg==0.8.3
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scalex</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&#39;2.0.3.dev&#39;
+</pre></div></div>
+</div>
+<p>First we merge the RNA and ATAC data and add metadata information, and this processed data is available <a class="reference external" href="http://zhanglab.net/scalex-tutorial/pbmc_RNA-ATAC.h5ad">here</a></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk_dir</span> <span class="o">=</span> <span class="s1">&#39;./&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">wk_dir</span><span class="o">+</span><span class="s1">&#39;pbmc_RNA-ATAC.h5ad&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 16492 × 13928
+    obs: &#39;celltype&#39;, &#39;tech&#39;, &#39;batch&#39;
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_cells</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_genes</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_cells</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_top_genes</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[:,</span> <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">highly_variable</span><span class="p">]</span>
+
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_pcs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+normalizing counts per cell
+    finished (0:00:00)
+If you pass `n_top_genes`, all cutoffs are ignored.
+extracting highly variable genes
+    finished (0:00:01)
+--&gt; added
+    &#39;highly_variable&#39;, boolean vector (adata.var)
+    &#39;means&#39;, float vector (adata.var)
+    &#39;dispersions&#39;, float vector (adata.var)
+    &#39;dispersions_norm&#39;, float vector (adata.var)
+... as `zero_center=True`, sparse input is densified and may lead to large memory consumption
+computing PCA
+    on highly variable genes
+    with n_comps=50
+    finished (0:00:02)
+computing neighbors
+    using &#39;X_pca&#39; with n_pcs = 30
+    finished: added to `.uns[&#39;neighbors&#39;]`
+    `.obsp[&#39;distances&#39;]`, distances for each pair of neighbors
+    `.obsp[&#39;connectivities&#39;]`, weighted adjacency matrix (0:00:14)
+computing UMAP
+    finished: added
+    &#39;X_umap&#39;, UMAP coordinates (adata.obsm) (0:00:29)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">,</span><span class="s1">&#39;celltype&#39;</span><span class="p">],</span><span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_Integration_cross-modality_32_0.png" src="../_images/tutorial_Integration_cross-modality_32_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wk_dir</span><span class="o">=</span><span class="s1">&#39;./&#39;</span> <span class="c1"># wk_dir is your local path to store data and results</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">SCALEX</span><span class="p">(</span><span class="n">data_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">wk_dir</span><span class="o">+</span><span class="s1">&#39;RNA-ATAC.h5ad&#39;</span><span class="p">],</span>
+              <span class="n">min_features</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+              <span class="n">min_cells</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+              <span class="n">outdir</span><span class="o">=</span><span class="n">wk_dir</span><span class="o">+</span><span class="s1">&#39;/pbmc_RNA_ATAC/&#39;</span><span class="p">,</span>
+              <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">gpu</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+2021-03-26 11:46:17,234 - root - INFO - Raw dataset shape: (16492, 13928)
+2021-03-26 11:46:17,237 - root - INFO - Preprocessing
+2021-03-26 11:46:17,260 - root - INFO - Filtering cells
+Trying to set attribute `.obs` of view, copying.
+2021-03-26 11:46:21,627 - root - INFO - Filtering features
+2021-03-26 11:46:24,745 - root - INFO - Normalizing total per cell
+normalizing counts per cell
+    finished (0:00:00)
+2021-03-26 11:46:25,022 - root - INFO - Log1p transforming
+2021-03-26 11:46:26,014 - root - INFO - Finding variable features
+If you pass `n_top_genes`, all cutoffs are ignored.
+extracting highly variable genes
+    finished (0:00:03)
+--&gt; added
+    &#39;highly_variable&#39;, boolean vector (adata.var)
+    &#39;means&#39;, float vector (adata.var)
+    &#39;dispersions&#39;, float vector (adata.var)
+    &#39;dispersions_norm&#39;, float vector (adata.var)
+2021-03-26 11:46:30,637 - root - INFO - Batch specific maxabs scaling
+2021-03-26 11:46:32,857 - root - INFO - Processed dataset shape: (16492, 2000)
+2021-03-26 11:46:32,908 - root - INFO - model
+VAE(
+  (encoder): Encoder(
+    (enc): NN(
+      (net): ModuleList(
+        (0): Block(
+          (fc): Linear(in_features=2000, out_features=1024, bias=True)
+          (norm): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): ReLU()
+        )
+      )
+    )
+    (mu_enc): NN(
+      (net): ModuleList(
+        (0): Block(
+          (fc): Linear(in_features=1024, out_features=10, bias=True)
+        )
+      )
+    )
+    (var_enc): NN(
+      (net): ModuleList(
+        (0): Block(
+          (fc): Linear(in_features=1024, out_features=10, bias=True)
+        )
+      )
+    )
+  )
+  (decoder): NN(
+    (net): ModuleList(
+      (0): Block(
+        (fc): Linear(in_features=10, out_features=2000, bias=True)
+        (norm): DSBatchNorm(
+          (bns): ModuleList(
+            (0): BatchNorm1d(2000, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (1): BatchNorm1d(2000, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (act): Sigmoid()
+      )
+    )
+  )
+)
+Epochs: 100%|██████████| 117/117 [06:54&lt;00:00,  3.54s/it, recon_loss=274.876,kl_loss=2.892]
+2021-03-26 11:53:35,672 - root - INFO - Output dir: .//pbmc_RNA_ATAC//
+2021-03-26 11:53:45,553 - root - INFO - Plot umap
+computing neighbors
+    finished: added to `.uns[&#39;neighbors&#39;]`
+    `.obsp[&#39;distances&#39;]`, distances for each pair of neighbors
+    `.obsp[&#39;connectivities&#39;]`, weighted adjacency matrix (0:00:03)
+computing UMAP
+    finished: added
+    &#39;X_umap&#39;, UMAP coordinates (adata.obsm) (0:00:26)
+running Leiden clustering
+    finished: found 14 clusters and added
+    &#39;leiden&#39;, the cluster labels (adata.obs, categorical) (0:00:05)
+WARNING: saving figure to file pbmc_RNA_ATAC/umap.pdf
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">,</span><span class="s1">&#39;celltype&#39;</span><span class="p">],</span><span class="n">legend_fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/tutorial_Integration_cross-modality_36_0.png" src="../_images/tutorial_Integration_cross-modality_36_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Integration_scATAC-seq.html" class="btn btn-neutral float-left" title="Integrating scATAC-seq data using SCALEX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, yuchuan.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
