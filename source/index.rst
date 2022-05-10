@@ -34,7 +34,8 @@
    news
    release/index
 
-
+`test demo <../demo.ipynb>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 News
 ----
 
