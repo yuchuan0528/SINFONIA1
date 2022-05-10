@@ -18,6 +18,9 @@
 123456
 ----------------
 
+`test demo <../demo.ipynb>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. include:: contributors.rst
 
 .. role:: small
@@ -33,9 +36,9 @@
    api/index
    news
    release/index
+   demo
 
-`test demo <../demo.ipynb>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 News
 ----
 
